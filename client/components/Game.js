@@ -48,7 +48,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(setMessage('Player 2 Win!'))
       } else if (status === 'Full') {
         dispatch(setGameover(true))
-        dispatch(setMessage('Player 2 Win!'))
+        dispatch(setMessage('Tight! Try it again?'))
       } else {
         dispatch(toggleCurrentPlayer())
       }
