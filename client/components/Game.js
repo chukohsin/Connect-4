@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Row from './Row.js'
-import { resetBoard, setCurrentPlayer, setGameover, setMessage } from '../store'
+import { setBoard, toggleCurrentPlayer, resetCurrentPlayer, setGameover, setMessage } from '../store'
+import checkBoard from './boardCheck.js'
 
 const mapStateToProps = state => {
   return {
@@ -9,20 +10,49 @@ const mapStateToProps = state => {
     player2: state.player2,
     board: state.board,
     currentPlayer: state.currentPlayer,
-    gameover: state.gameover
+    gameover: state.gameover,
+    message: state.message
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   resetGame() {
-    dispatch(resetBoard())
-    dispatch(setCurrentPlayer(1))
+    let newBoard = []
+    for (let r = 0; r < 6; r++) {
+      let row = [];
+      for (let c = 0; c < 7; c++) { row.push(null) }
+      newBoard.push(row);
+    }
+    dispatch(setBoard(newBoard))
+    dispatch(resetCurrentPlayer())
     dispatch(setGameover(false))
     dispatch(setMessage(''))
   },
-  togglePlayer(player) {
-    let currentPlayer = player === 1 ? 2 : 1
-    dispatch(setCurrentPlayer(currentPlayer))
+  addPiece(col, board, player, gameover) {
+    if (gameover) {
+      dispatch(setMessage('Game Over! Play it again?'))
+    } else {
+      for (let i = 5; i >=0; i--) {
+        if (!board[i][col]) {
+          board[i][col] = player
+          break
+        }
+      }
+      dispatch(setBoard(board))
+      let status = checkBoard(board)
+      if (status === 1) {
+        dispatch(setGameover(true))
+        dispatch(setMessage('Player 1 Win!'))
+      } else if (status === 2) {
+        dispatch(setGameover(true))
+        dispatch(setMessage('Player 2 Win!'))
+      } else if (status === 'Full') {
+        dispatch(setGameover(true))
+        dispatch(setMessage('Player 2 Win!'))
+      } else {
+        dispatch(toggleCurrentPlayer())
+      }
+    }
   }
 })
 
@@ -32,14 +62,17 @@ class Game extends React.Component {
   }
 
   render() {
-    console.log(this.props.player2)
     return (
       <div>
         <table>
           <tbody>
             <tr>
             {
-              [0, 1, 2, 3, 4, 5, 6].map((el, i) => <td key={i}><button>click</button></td>)
+              ['C', 'O', 'N', 'N', 'E', 'C', 'T'].map((el, i) => (
+                <td key={i}>
+                  <button className="button2" onClick={() => this.props.addPiece(i, this.props.board, this.props.currentPlayer, this.props.gameover)}>{el}</button>
+                </td>
+              ))
             }
             </tr>
             {
@@ -47,6 +80,8 @@ class Game extends React.Component {
             }
           </tbody>
         </table>
+        <div className="button" onClick={() => {this.props.resetGame()}}>Reset</div>
+        <p className="message">{this.props.message}</p>
       </div>
     )
   }

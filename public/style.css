@@ -1,21 +1,90 @@
-body {
+
+* {
   font-family: sans-serif;
 }
 
-a {
-  text-decoration: none;
+h1 {
+  text-align: center;
+  font-size: 50px;
 }
 
-label {
-  display: block;
+table {
+  margin: 0 auto;
+  border-spacing: 0px 0px;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
+.button {
+  background-color: #303030;
+  color: #ffffff;
+  height: 30px;
+  width: 490px;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.5s, color 0.5s;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
+.button2 {
+  background-color: #303030;
+  color: #ffffff;
+  height: 60px;
+  width: 60px;
+  border-radius: 100px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  text-align: center;
+  transition: background-color 0.5s, color 0.5s;
+  font-size:20px;
+}
+
+.button:hover {
+  background-color: #5DADE2;
+  color: #303030;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.cell {
+  height: 70px;
+  width: 70px;
+  background-color: #303030;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.message {
+  text-align: center;
+  font-size: 17px;
+}
+
+.white {
+  height: 60px;
+  width: 60px;
+  background-color: #FFF;
+  border-radius: 100px;
+}
+
+.red {
+  height: 60px;
+  width: 60px;
+  background-color: #E67E22;
+  border-radius: 100px;
+  transition: background-color 0.5s;
+}
+
+.yellow {
+  height: 60px;
+  width: 60px;
+  background-color: #ABEBC6;
+  border-radius: 100px;
+  transition: background-color 0.5s;
 }

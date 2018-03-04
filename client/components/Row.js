@@ -6,8 +6,8 @@ const Row = (props) => {
 	return (
 		<tr>
 			{
-				row.map((el, i) => <Cell key={i} value={el} colInx={i} play={play} />)
-			}	
+				row.map((el, i) => <Cell key={i} value={el}/>)
+			}
 		</tr>
 	)
 }

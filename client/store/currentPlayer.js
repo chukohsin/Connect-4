@@ -1,19 +1,18 @@
-const SET_CURRENT_PLAYER = 'SET_CURRENT_PLAYER'
-const RESET_CURRENT_PLAYER = 'SET_CURRENT_PLAYER'
+const TOGGLE_CURRENT_PLAYER = 'TOGGLE_CURRENT_PLAYER'
+const RESET_CURRENT_PLAYER = 'RESET_CURRENT_PLAYER'
 
-export const setCurrentPlayer = player => ({
-	type: SET_CURRENT_PLAYER,
-	player
+export const toggleCurrentPlayer = () => ({
+	type: TOGGLE_CURRENT_PLAYER
 })
 
-export const resetCurrentPlayer = ()=> ({
+export const resetCurrentPlayer = () => ({
 	type: RESET_CURRENT_PLAYER
 })
 
-export default function(state = '', action) {
+export default function(state = 1, action) {
 	switch (action.type) {
-		case SET_CURRENT_PLAYER:
-			return action.player
+		case TOGGLE_CURRENT_PLAYER:
+			return state === 1 ? 2 : 1
 		case RESET_CURRENT_PLAYER:
 			return 1
 		default:

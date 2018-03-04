@@ -1,12 +1,27 @@
 import React from 'react'
+import {connect} from 'react-redux'
+
+const mapStateToProps = state => ({
+	currentPlayer: state.currentPlayer
+})
 
 const Cell = (props) => {
-	let { value, colInx, play } = props
+	let { currentPlayer, value } = props,
+		color = 'white'
+	if (value === 1) {
+		color = 'yellow'
+	} else if (value === 2) {
+		color = 'red'
+	}
+
 	return (
 		<td>
-			<div>Hi</div>
+			<div className="cell">
+				<div className={color} />
+			</div>
 		</td>
 	)
 }
 
-export default Cell
+const CellContainer = connect(mapStateToProps)(Cell)
+export default CellContainer
