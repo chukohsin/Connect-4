@@ -32,6 +32,7 @@ table {
   transition: background-color 0.5s, color 0.5s;
   font-size:20px;
   cursor: cell;
+  animation: blinker 3s linear infinite;
 }
 
 .player1Button:hover {
@@ -70,6 +71,11 @@ table {
   justify-content: center;
   align-items: center;
   font-size: 100px;
+}
+
+
+@keyframes blinker {  
+  50% { opacity: 0; }
 }
 
 .cell {
