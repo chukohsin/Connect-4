@@ -48,8 +48,8 @@ table {
 .player1Board {
   color: #ffffff;
   background-color: #ABEBC6;
-  height: 455px;
-  width: 455px;
+  height: 400px;
+  width: 400px;
   border-radius: 480px;
   text-align: center;
   display: flex;
@@ -62,8 +62,8 @@ table {
 .player2Board {
   color: #ffffff;
   background-color: #E67E22;
-  height: 455px;
-  width: 455px;
+  height: 400px;
+  width: 400px;
   border-radius: 480px;
   text-align: center;
   display: flex;
