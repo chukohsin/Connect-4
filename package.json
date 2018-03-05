@@ -18,8 +18,7 @@
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --require @babel/polyfill --require @babel/register"
   },
-  "author": "Fullstack Academy of Code",
-  "license": "MIT",
+  "author": "Ko-Hsin Chu",
   "dependencies": {
     "alertify.js": "^1.0.12",
     "csshake": "^1.5.3",
@@ -29,6 +28,7 @@
     "prop-types": "^15.5.8",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-notify-toast": "^0.4.0",
     "react-redux": "^5.0.2",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",

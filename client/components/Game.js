@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Row from './Row.js'
 import checkBoard from './boardCheck'
 import { setBoard, toggleCurrentPlayer, resetCurrentPlayer, setGameover, setMessage } from '../store'
+import Notifications, {notify} from 'react-notify-toast';
 
 const mapStateToProps = state => {
   return {
@@ -30,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
   },
   addPiece(col, board, player, gameover) {
     if (gameover) {
-      dispatch(setMessage('Game Over! Play it again?'))
+      dispatch(setMessage('Game Over! New Game?'))
     } else if (board[0][col]) {
       dispatch(setMessage('Try other column!'))
     } else {
@@ -45,13 +46,15 @@ const mapDispatchToProps = dispatch => ({
       let status = checkBoard(board)
       if (status === 1) {
         dispatch(setGameover(true))
-        dispatch(setMessage('Player Green Win!'))
+        dispatch(setMessage('Player Green Win :)'))
+        notify.show('Player Green Win :)', "custom", 5000, {background: '#82E0AA', text: 'white'})
       } else if (status === 2) {
         dispatch(setGameover(true))
-        dispatch(setMessage('Player Orange Win!'))
+        dispatch(setMessage('Player Orange Win :)'))
+        notify.show('Player Orange Win :)', "custom", 5000, {background: '#E67E22', text: 'white'})
       } else if (status === 'Full') {
         dispatch(setGameover(true))
-        dispatch(setMessage('Tight! Try it again?'))
+        dispatch(setMessage('Tight! New Game?'))
       } else {
         dispatch(toggleCurrentPlayer())
       }
@@ -81,7 +84,11 @@ class Game extends React.Component {
     }
     return (
       <div>
-        <div className="head"></div>
+        <div className="head">
+          <div className='main'>
+            <Notifications />
+          </div>
+        </div>
         <div className="bigBox">
           <div className="player1Board" style={{visibility: board1}}>Player Green</div>
           <table>
@@ -104,7 +111,7 @@ class Game extends React.Component {
         </div>
         <div className="button" onClick={() => {this.props.resetGame()}}>RESTART</div>
         <p className="message">{this.props.message}</p>
-        <div className="footer" >By Ko-Hsin Chu<img src='./me.png'/></div>
+        <div className="footer" >Ko-Hsin Chu<img src='./me.png'/></div>
       </div>
     )
   }
