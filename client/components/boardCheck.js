@@ -11,8 +11,9 @@ function checkHorizontal(board) {
 function checkVertical(board) {
 	for (let j = 0; j < 7; j++) {
 		for (let i = 5; i > 2; i--) {
+			console.log(i)
 			if (board[i][j] === board[i - 1][j] && board[i][j] === board[i - 2][j] && board[i][j] === board[i - 3][j]) {
-				return board[i - 3][j]
+				return board[i][j]
 			}
 		}
 	}

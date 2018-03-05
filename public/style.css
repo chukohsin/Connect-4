@@ -3,50 +3,73 @@
   font-family: sans-serif;
 }
 
-h1 {
-  text-align: center;
-  font-size: 50px;
-}
-
 table {
-  margin: 0 auto;
-  border-spacing: 0px 0px;
+  /*margin: auto;*/
+  /*border-spacing: 0px 0px;*/
 }
 
-.button {
-  background-color: #303030;
+.head {
+  width: 498px;
+  height: 70px;
+}
+
+.bigBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.playButton {
   color: #ffffff;
-  height: 30px;
-  width: 490px;
-  border-radius: 5px;
-  margin: 0 auto;
-  margin-bottom: 25px;
+  background-color: #303030;
+  height: 70px;
+  width: 70px;
+  border-radius: 100px;
+  /*margin: 0 auto;*/
+  margin-bottom: 10px;
+  text-align: center;
+  transition: background-color 0.5s, color 0.5s;
+  font-size:20px;
+  cursor: cell;
+}
+
+.player1Button:hover {
+  background-color: #ABEBC6;
+  color: #303030;
+}
+
+.player2Button:hover {
+  background-color: #E67E22;
+  color: #303030;
+}
+
+.player1Board {
+  color: #ffffff;
+  background-color: #ABEBC6;
+  height: 480px;
+  width: 480px;
+  border-radius: 480px;
   text-align: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  transition: background-color 0.5s, color 0.5s;
+  font-size: 100px;
 }
 
-.button2 {
-  background-color: #303030;
+.player2Board {
   color: #ffffff;
-  height: 60px;
-  width: 60px;
-  border-radius: 100px;
-  margin: 0 auto;
-  margin-bottom: 25px;
+  background-color: #E67E22;
+  height: 480px;
+  width: 480px;
+  border-radius: 480px;
   text-align: center;
-  transition: background-color 0.5s, color 0.5s;
-  font-size:20px;
-}
-
-.button:hover {
-  background-color: #5DADE2;
-  color: #303030;
-  transition: background-color 0.5s, color 0.5s;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
 }
 
 .cell {
@@ -57,23 +80,16 @@ table {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-}
-
-
-.message {
-  text-align: center;
-  font-size: 17px;
 }
 
 .white {
   height: 60px;
   width: 60px;
-  background-color: #FFF;
+  background-color: #ffffff;
   border-radius: 100px;
 }
 
-.red {
+.orange {
   height: 60px;
   width: 60px;
   background-color: #E67E22;
@@ -81,10 +97,57 @@ table {
   transition: background-color 0.5s;
 }
 
-.yellow {
+.green {
   height: 60px;
   width: 60px;
   background-color: #ABEBC6;
   border-radius: 100px;
   transition: background-color 0.5s;
+}
+
+.button {
+  background-color: #303030;
+  color: #ffffff;
+  height: 30px;
+  width: 498px;
+  margin: 5px auto;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.button:hover {
+  background-color: #ffffff;
+  color: #303030;
+  width: 490px;
+  height: 22px;
+  border: 4px solid #303030;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.message {
+  width: 498px;
+  height: 70px;
+  margin: auto;
+  text-align: center;
+  font-size: 40px;
+  background-color: #303030;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 10px 10px;
+}
+
+.footer {
+  font-size: 18px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }

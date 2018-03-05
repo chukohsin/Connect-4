@@ -9,9 +9,9 @@ const Cell = (props) => {
 	let { currentPlayer, value } = props,
 		color = 'white'
 	if (value === 1) {
-		color = 'yellow'
+		color = 'green'
 	} else if (value === 2) {
-		color = 'red'
+		color = 'orange'
 	}
 
 	return (

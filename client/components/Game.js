@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Row from './Row.js'
+import checkBoard from './boardCheck'
 import { setBoard, toggleCurrentPlayer, resetCurrentPlayer, setGameover, setMessage } from '../store'
-import checkBoard from './boardCheck.js'
 
 const mapStateToProps = state => {
   return {
@@ -31,7 +31,10 @@ const mapDispatchToProps = dispatch => ({
   addPiece(col, board, player, gameover) {
     if (gameover) {
       dispatch(setMessage('Game Over! Play it again?'))
+    } else if (board[0][col]) {
+      dispatch(setMessage('Try other column!'))
     } else {
+      dispatch(setMessage(''))
       for (let i = 5; i >=0; i--) {
         if (!board[i][col]) {
           board[i][col] = player
@@ -42,10 +45,10 @@ const mapDispatchToProps = dispatch => ({
       let status = checkBoard(board)
       if (status === 1) {
         dispatch(setGameover(true))
-        dispatch(setMessage('Player 1 Win!'))
+        dispatch(setMessage('Player Green Win!'))
       } else if (status === 2) {
         dispatch(setGameover(true))
-        dispatch(setMessage('Player 2 Win!'))
+        dispatch(setMessage('Player Orange Win!'))
       } else if (status === 'Full') {
         dispatch(setGameover(true))
         dispatch(setMessage('Tight! Try it again?'))
@@ -62,30 +65,51 @@ class Game extends React.Component {
   }
 
   render() {
+    let currentPlayerClass = 'playButton shake-slow', board1, board2
+    if (this.props.gameover) {
+      currentPlayerClass = 'playButton'
+      board1 = 'hidden'
+      board2 = 'hidden'
+    } else if (!this.props.gameover && this.props.currentPlayer === 1) {
+      currentPlayerClass += ' player1Button'
+      board1 = 'visible'
+      board2 = 'hidden'
+    } else {
+      currentPlayerClass += ' player2Button'
+      board1 = 'hidden'
+      board2 = 'visible'
+    }
     return (
       <div>
-        <table>
-          <tbody>
-            <tr>
-            {
-              ['C', 'O', 'N', 'N', 'E', 'C', 'T'].map((el, i) => (
-                <td key={i}>
-                  <button className="button2" onClick={() => this.props.addPiece(i, this.props.board, this.props.currentPlayer, this.props.gameover)}>{el}</button>
-                </td>
-              ))
-            }
-            </tr>
-            {
-              this.props.board.map((el, i) => <Row key={i} row={el} />)
-            }
-          </tbody>
-        </table>
-        <div className="button" onClick={() => {this.props.resetGame()}}>Reset</div>
+        <div className="head"></div>
+        <div className="bigBox">
+          <div className="player1Board" style={{visibility: board1}}>Player Green</div>
+          <table>
+            <tbody>
+              <tr>
+              {
+                ['C', 'O', 'N', 'N', 'E', 'C', 'T'].map((el, i) => (
+                  <td key={i}>
+                    <button className={currentPlayerClass} onClick={() => this.props.addPiece(i, this.props.board, this.props.currentPlayer, this.props.gameover)}>{el}</button>
+                  </td>
+                ))
+              }
+              </tr>
+              {
+                this.props.board.map((el, i) => <Row key={i} row={el} />)
+              }
+            </tbody>
+          </table>
+          <div className="player2Board" style={{visibility: board2}}>Player Orange</div>
+        </div>
+        <div className="button" onClick={() => {this.props.resetGame()}}>RESTART</div>
         <p className="message">{this.props.message}</p>
+        <div className="footer" >By Ko-Hsin Chu<img src='./me.png'/></div>
       </div>
     )
   }
 }
+
 
 const GameContainer = connect(mapStateToProps, mapDispatchToProps)(Game)
 export default GameContainer
